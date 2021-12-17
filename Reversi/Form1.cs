@@ -23,6 +23,7 @@ namespace Reversi
         {
             Graphics g = e.Graphics;
             board.Draw(g, pictureBox1.Width, pictureBox1.Height);
+            board.HighlightLegal(pictureBox1.Width, pictureBox1.Height, g);
             
             player1Score.Text = String.Format("Player 1: {0}", board.players[0].points);
             player2Score.Text = String.Format("Player 2: {0}", board.players[1].points);
@@ -47,11 +48,7 @@ namespace Reversi
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (board.InBounds(e.X, e.Y, pictureBox1.Width, pictureBox1.Height))
-            {
-                board.HighlightLegal(e.X, e.Y, pictureBox1.Width, pictureBox1.Height, pictureBox1.CreateGraphics());
-                pictureBox1.Invalidate();
-            }
+            
         }
     }
 }
